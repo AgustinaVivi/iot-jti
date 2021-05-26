@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         var MQTTbroker = 'ec2-54-174-213-224.compute-1.amazonaws.com';//servernya disesuaikan
-        var MQTTport = 8089; //sesuaikan port websockets messsage broker,
+        var MQTTport = 1883; //sesuaikan port websockets messsage broker,
         var MQTTsubTopic = 'room/suhu'; //topiknya perlu disesuaikan
         var chart; // global variuable for chart
         var dataTopics = new Array();
@@ -21,14 +21,10 @@
 
         //mqtt connecton options including the mqtt broker subscriptions
         var options = {
-            timeout: 3,
             userName: "vivi",//silakan disikan username dan password yang didaftarkan mqtt
             password: "ratnasari34",
-            willMessage: "" ,
-            keepAliveInterval: 10,
-            cleanSession: true,
+            timeout: 3,
             useSSL: false,
-            invocationContext,
             onSuccess: function() {
                 console.log("mqtt connected");
                 // Connection succeeded; subscribe to our topics
@@ -39,10 +35,7 @@
             onFailure: function(message) {
                 console.log("Connection failed, ERROR: " + message.errorMessage);
                 //window.setTimeout(location.reload(),20000); //wait 20seconds before trying to connect again.
-            },
-            hosts: 'ec2-54-174-213-224.compute-1.amazonaws.com',
-            ports: 8089,
-            mqttVersion: 5
+            }
         };
         //can be used to reconnect on connection lost
         function onConnectionLost(responseObject) {
@@ -89,7 +82,7 @@
                 }
             });
             // Connect to MQTT broker
-            client.connect('ec2-54-174-213-224.compute-1.amazonaws.com:8089',options);
+            client.connect(options);
         };
         //this adds the plots to the chart
         function plot(point, chartno) {
