@@ -15,7 +15,7 @@
         var chart; // global variuable for chart
         var dataTopics = new Array();
         //mqtt broker
-        var client = new Paho.MQTT.Client(MQTTbroker, MQTTport, "ESP8266Client");
+        var client = new Paho.MQTT.Client(MQTTbroker, MQTTport, "vivi", "ESP8266Client");
         client.onMessageArrived = onMessageArrived;
         client.onConnectionLost = onConnectionLost;
 
