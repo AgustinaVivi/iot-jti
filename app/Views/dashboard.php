@@ -10,12 +10,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         var MQTTbroker = 'ec2-54-174-213-224.compute-1.amazonaws.com';//servernya disesuaikan
-        var MQTTport = 1883; //sesuaikan port websockets messsage broker,
+        var MQTTport = 8089; //sesuaikan port websockets messsage broker,
         var MQTTsubTopic = 'room/suhu'; //topiknya perlu disesuaikan
         var chart; // global variuable for chart
         var dataTopics = new Array();
         //mqtt broker
-        var client = new Paho.MQTT.Client(MQTTbroker, MQTTport, "/vivi", "ESP8266Client");
+        var client = new Paho.MQTT.Client(MQTTbroker, MQTTport, "ESP8266Client");
         client.onMessageArrived = onMessageArrived;
         client.onConnectionLost = onConnectionLost;
 
