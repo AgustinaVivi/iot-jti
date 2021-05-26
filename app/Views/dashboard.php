@@ -35,7 +35,14 @@
             onFailure: function(message) {
                 console.log("Connection failed, ERROR: " + message.errorMessage);
                 //window.setTimeout(location.reload(),20000); //wait 20seconds before trying to connect again.
-            }
+            },
+            protocolId: 'MQTT',
+            protocolVersion: 5,
+            rejectUnauthorized: false,
+            clean: true,
+            reconnectPeriod: 20000,
+            connectTimeout: 30 * 1000,
+            protocol: 'mqtt',
         };
         //can be used to reconnect on connection lost
         function onConnectionLost(responseObject) {
