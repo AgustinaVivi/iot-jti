@@ -21,10 +21,14 @@
 
         //mqtt connecton options including the mqtt broker subscriptions
         var options = {
+            timeout: 3,
             userName: "vivi",//silakan disikan username dan password yang didaftarkan mqtt
             password: "ratnasari34",
-            timeout: 3,
+            willMessage: "" ,
+            keepAliveInterval: 10,
+            cleanSession: true,
             useSSL: false,
+            invocationContext,
             onSuccess: function() {
                 console.log("mqtt connected");
                 // Connection succeeded; subscribe to our topics
@@ -36,13 +40,9 @@
                 console.log("Connection failed, ERROR: " + message.errorMessage);
                 //window.setTimeout(location.reload(),20000); //wait 20seconds before trying to connect again.
             },
-            protocolId: 'MQTT',
-            protocolVersion: 5,
-            rejectUnauthorized: false,
-            clean: true,
-            reconnectPeriod: 20000,
-            connectTimeout: 30 * 1000,
-            protocol: 'mqtt',
+            hosts: 'ec2-54-174-213-224.compute-1.amazonaws.com',
+            ports: 8089,
+            mqttVersion: 5
         };
         //can be used to reconnect on connection lost
         function onConnectionLost(responseObject) {
