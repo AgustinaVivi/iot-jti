@@ -15,7 +15,7 @@
         var chart; // global variuable for chart
         var dataTopics = new Array();
         //mqtt broker
-        var client = new Paho.MQTT.Client(MQTTbroker, MQTTport, "/vivi", "ESP8266Client");
+        var client = new Paho.MQTT.Client(MQTTbroker, MQTTport, "ESP8266Client");
         client.onMessageArrived = onMessageArrived;
         client.onConnectionLost = onConnectionLost;
 
@@ -82,7 +82,7 @@
                 }
             });
             // Connect to MQTT broker
-            client.connect(options);
+            client.connect('ec2-54-174-213-224.compute-1.amazonaws.com:8089',options);
         };
         //this adds the plots to the chart
         function plot(point, chartno) {
